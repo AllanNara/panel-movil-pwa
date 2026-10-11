@@ -11,17 +11,45 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Finanzas">
   <style>
-    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #f9fafc; }
-    iframe { border: 0; width: 100vw; height: 100vh; display: block; }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      background: #f9fafc; color: #202124;
+      font-family: -apple-system, Roboto, "Segoe UI", sans-serif;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .caja { text-align: center; padding: 24px; max-width: 320px; }
+    .caja img { width: 96px; height: 96px; border-radius: 20px; margin-bottom: 16px; }
+    .caja h1 { font-size: 20px; margin: 0 0 8px; }
+    .caja p { font-size: 14px; color: #5f6368; margin: 0 0 24px; }
+    .boton {
+      display: inline-block; background: #1a73e8; color: #fff; text-decoration: none;
+      font-weight: bold; font-size: 16px; padding: 14px 28px; border-radius: 8px;
+    }
   </style>
 </head>
 <body>
-  <iframe src="https://script.google.com/macros/s/AKfycbwHQnJLH10ARSqm1XT5-sMcTn_w90yspfPMskKqgj-ek8FZ4Bv_r55ZVvQGvpDsfvih/exec"
-          title="Panel Móvil - Registro Financiero"
-          allow="clipboard-write"></iframe>
+  <div class="caja">
+    <img src="icons/icon-192.png" alt="">
+    <h1>Finanzas</h1>
+    <p>Panel Móvil del Registro Financiero.</p>
+    <a class="boton" id="abrir" href="https://script.google.com/macros/s/AKfycbwHQnJLH10ARSqm1XT5-sMcTn_w90yspfPMskKqgj-ek8FZ4Bv_r55ZVvQGvpDsfvih/exec">
+      Abrir Panel Móvil
+    </a>
+  </div>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+    // Navegación real (no iframe) para que la cookie de sesión de Google viaje
+    // como de "primera parte" -- en un iframe de otro origen, Google no la ve
+    // y el Web App (atado a un archivo de Drive) falla con un error genérico.
+    // Solo se redirige sola cuando ya corre como app instalada
+    // (display-mode: standalone / navigator.standalone en iOS): en una pestaña
+    // normal del navegador se queda en esta pantalla, que es la que Chrome
+    // necesita ver para ofrecer "Instalar aplicación".
+    var esStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    if (esStandalone) {
+      location.replace(document.getElementById('abrir').href);
     }
   </script>
 </body>
