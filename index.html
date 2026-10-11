@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>Finanzas</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a73e8">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Finanzas">
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #f9fafc; }
+    iframe { border: 0; width: 100vw; height: 100vh; display: block; }
+  </style>
+</head>
+<body>
+  <iframe src="https://script.google.com/macros/s/AKfycbwHQnJLH10ARSqm1XT5-sMcTn_w90yspfPMskKqgj-ek8FZ4Bv_r55ZVvQGvpDsfvih/exec"
+          title="Panel Móvil - Registro Financiero"
+          allow="clipboard-write"></iframe>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
